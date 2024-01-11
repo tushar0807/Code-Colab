@@ -44,5 +44,7 @@ Code Collab is a real-time code collaboration platform for developers. It allows
 ## Contributors
 * [Ankit Kumar](https://github.com/ankit-pn)
 * [Mayur Sonkusare](https://github.com/mayur-ud)
+* [Tushar Amritfale](https://github.com/tushar0807)
+* [Shubham Armo](https://github.com/space584)
 
 Try it Now [Code Collab](https://code-kolab.vercel.app/)
