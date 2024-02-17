@@ -38,6 +38,43 @@ Code Collab is a real-time code collaboration platform for developers. It allows
 - [ ] During Login of Users details are verified
 - [ ] Post-Login all restricted routes are secured
 
+# Running the App Locally
+
+Follow these steps to run the app locally on your machine.
+
+## Prerequisites
+
+- Node.js installed on your machine
+- Git installed on your machine
+
+## Steps
+
+1. **Clone the Repository**
+
+    ```bash
+    git clone github.com/tushar0807/Code-Colab
+    ```
+
+2. **Frontend Setup**
+
+    ```bash
+    cd ./Frontend
+    npm install
+    npm run start
+    ```
+
+3. **GraphQL Server Setup**
+
+    ```bash
+    cd ./gql_server
+    npm install
+    npm run dev
+    ```
+
+4. **Access the App**
+
+    Once both the frontend and GraphQL server are running, you can access the app by navigating to `http://localhost:3000` in your web browser.
+
 
 
 
