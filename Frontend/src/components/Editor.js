@@ -58,9 +58,9 @@ const Editor = ({ socketRef, projectId, onCodeChange }) => {
         };
     }, [socketRef.current]);
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-    },[editorRef.current])
+    // },[editorRef.current])
 
     return <textarea  id="realtimeEditor"></textarea>;
 };
