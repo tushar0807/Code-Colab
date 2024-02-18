@@ -11,7 +11,7 @@ import {
 import { StoreProvider } from './assets/StoreContext';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: 'https://code-colab-tvz6.onrender.com',
   cache: new InMemoryCache(),
 })
 
