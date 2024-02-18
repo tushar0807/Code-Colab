@@ -1,16 +1,26 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const http = require("http");
-const path = require("path");
-const { Server } = require("socket.io");
-const ACTIONS = require("./Actions");
-
-const server = http.createServer(app);
+import { createServer } from "http";
+import { join } from "path";
+import { Server } from "socket.io";
+// import {actions} from "./Actions";
+const ACTIONS = {
+    JOIN: 'join',
+    JOINED: 'joined',
+    DISCONNECTED: 'disconnected',
+    CODE_CHANGE: 'code-change',
+    SYNC_CODE: 'sync-code',
+    LEAVE: 'leave',
+    BROADCAST : 'broadcast',
+    GET_BROADCAST : 'getBroadcast',
+    STREAM : 'stream'
+};
+const server = createServer(app);
 const io = new Server(server);
 
-app.use(express.static("build"));
+// app.use(static("build"));
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(join(__dirname, "build", "index.html"));
 });
 
 const userSocketMap = {};

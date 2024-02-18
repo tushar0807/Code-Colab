@@ -10,4 +10,4 @@ const ACTIONS = {
     STREAM : 'stream'
 };
 
-module.exports = ACTIONS;
+export default ACTIONS;
