@@ -18,10 +18,6 @@ const ACTIONS = {
 const server = createServer(app);
 const io = new Server(server);
 
-// app.use(static("build"));
-app.use((req, res, next) => {
-  res.sendFile(join(__dirname, "build", "index.html"));
-});
 
 const userSocketMap = {};
 function getAllConnectedClients(projectId) {
