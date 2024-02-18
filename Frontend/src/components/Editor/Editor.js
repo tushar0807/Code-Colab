@@ -11,7 +11,7 @@ import "codemirror/mode/python/python";
 import "codemirror/mode/cmake/cmake";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets";
-import ACTIONS from "../../Actions";
+import ACTIONS from "../../Actions.js";
 import "./Editor.css";
 
 function Editor({
