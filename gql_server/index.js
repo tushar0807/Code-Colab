@@ -18,6 +18,6 @@ app.use('/',
 cors(),
 )
 
-server.listen().then(({ url }) => {
-    console.log(`API is running at : ${url} `);
+server.listen(process.env.GQL_PORT).then(({ url }) => {
+    console.log(`GQL server is running at : ${url} `);
 });
