@@ -7,5 +7,5 @@ export const initSocket = async () => {
         timeout: 10000,
         transports: ['websocket'],
     };
-    return io('http://localhost:5000' , options);    // return io(process.env.REACT_APP_BACKEND_URL, options);
+    return io('https://code-colab-tvz6.onrender.com' , options);    // return io(process.env.REACT_APP_BACKEND_URL, options);
 };
