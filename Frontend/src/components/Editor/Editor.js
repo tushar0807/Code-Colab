@@ -20,12 +20,13 @@ function Editor({
   onCodeChange,
   lang,
   theme,
-  content,
+  content = "",
   editorRef,
 }) {
-  console.log("Elang", lang);
+  console.log("EDItor", projectId, content);
 
   useEffect(() => {
+    console.log("UE EDITOR.js", content);
     async function init() {
       editorRef.current = Codemirror.fromTextArea(
         document.getElementById("realtimeEditor"),
@@ -35,41 +36,32 @@ function Editor({
           autoCloseTags: true,
           autoCloseBrackets: true,
           lineNumbers: true,
+          value: content,
         }
       );
 
-      console.log(content, "content");
-
       if (content) {
-        editorRef.current.setValue(String(content));
+        editorRef.current.setValue(content);
       }
 
-      editorRef.current.on("change", (instance, changes) => {
-        const { origin } = changes;
-        const code = instance.getValue();
-        onCodeChange(code);
-        if (origin !== "setValue") {
-          socketRef.current.emit(ACTIONS.CODE_CHANGE, {
-            projectId,
-            code,
-          });
-        }
-      });
+      console.log(editorRef.current.getValue(), "content");
     }
 
     init();
 
     return () => {
       editorRef.current?.toTextArea();
-      console.log(editorRef);
-      console.log(editorRef.current?.options.mode.name);
+      // console.log(editorRef);
+      // console.log(editorRef.current?.options.mode.name);
     };
   }, [lang, theme, content]);
 
   useEffect(() => {
+    console.log("EDITOR SOCKET REF CAHNGED", socketRef);
     if (socketRef.current) {
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-        if (code !== null) {
+        console.log("codeeeeee", code?.length);
+        if ((code && code !== null) || code?.length > 0) {
           editorRef.current?.setValue(code);
         }
       });
@@ -79,6 +71,22 @@ function Editor({
       socketRef.current.off(ACTIONS.CODE_CHANGE);
     };
   }, [socketRef.current]);
+
+  if (editorRef.current) {
+    editorRef?.current?.on("change", (instance, changes) => {
+      console.log("CODE CHANGE", instance, changes);
+      const { origin } = changes;
+      const code = instance.getValue();
+      console.log("USE EFFECT", code);
+      onCodeChange(code);
+      if (origin !== "setValue") {
+        socketRef.current.emit(ACTIONS.CODE_CHANGE, {
+          projectId,
+          code,
+        });
+      }
+    });
+  }
 
   return (
     <textarea id="realtimeEditor" style={{ minHeight: "100vh" }}></textarea>

@@ -161,19 +161,22 @@ function MainPage() {
     },
   });
 
-  const pdata = useQuery(GET_PROJECTS, {
+  const {
+    loading: loading2,
+    error: error2,
+    data: pdata,
+  } = useQuery(GET_PROJECTS, {
     variables: {
       projectId,
     },
   });
 
-  if (!loading) {
-    console.log(data, "dattttt");
-  }
+  console.log("L2f", pdata);
 
   useEffect(() => {
     async function init() {
       const uid = localStorage.getItem("uid");
+      console.log("INIT CALLED");
 
       if (!uid) {
         setOptions({
@@ -218,9 +221,10 @@ function MainPage() {
             if (username !== uid) {
               console.log(`${username} joined`);
             }
+            console.log("CLIENTS: " + clients);
             setClients(clients);
             console.log("clients ", clients);
-            socketRef.current.emit(ACTIONS.SYNC_CODE, {
+            socketRef.current?.emit(ACTIONS.SYNC_CODE, {
               code: codeRef.current,
               socketId,
             });
@@ -236,8 +240,9 @@ function MainPage() {
           console.log(clients);
         });
 
-        if (pdata.data?.project.content) {
-          editorRef.current?.setValue(pdata.data.project.content);
+        console.log("PDATA", pdata);
+        if (pdata?.project.content) {
+          editorRef.current?.setValue(pdata.project.content);
         }
       }
     }
@@ -257,12 +262,17 @@ function MainPage() {
 
   const ele = document.getElementsByClassName("CodeMirror")[0];
 
+  if (loading || loading2) {
+    console.log(data, pdata, "data not loaded");
+    return <p>LoadingOverlay...</p>;
+  }
+
   if (ele) {
     ele.style.fontSize = `${fsize}px`;
     console.log(ele);
   }
 
-  if (!pdata.loading && !pdata.data && projectId != "-1") {
+  if (!loading2 && !pdata && projectId != "-1") {
     console.log("NOT ACCESS THIS PAGE");
 
     return (
@@ -283,11 +293,7 @@ function MainPage() {
             <Image mt="20%" src={logo} height="90vh"></Image>
           </>
         ) : (
-          <LeftPane
-            clients={clients}
-            pid={projectId}
-            data={pdata.data?.project}
-          />
+          <LeftPane clients={clients} pid={projectId} data={pdata?.project} />
         )}
       </div>
       <div className="main">
@@ -301,7 +307,7 @@ function MainPage() {
         >
           <Grid gutter="sm" px="md" justify="left">
             <Grid.Col span={1}>
-              {pdata?.data && (
+              {pdata && (
                 <Center>
                   <Badge
                     variant="filled"
@@ -310,7 +316,7 @@ function MainPage() {
                     color="green"
                     fullWidth
                   >
-                    {pdata.data?.project.projectName}
+                    {pdata?.project.projectName}
                   </Badge>
                 </Center>
               )}
@@ -480,7 +486,7 @@ function MainPage() {
         ) : (
           <Editor
             editorRef={editorRef}
-            content={pdata.data?.project.content}
+            content={pdata?.project.content}
             socketRef={socketRef}
             projectId={projectId}
             onCodeChange={(code) => {
