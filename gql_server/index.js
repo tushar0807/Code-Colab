@@ -18,6 +18,8 @@ app.use('/',
 cors(),
 )
 
-server.listen().then(({ url }) => {
+const GQL_PORT = process.env.GQL_PORT || 4000;
+
+server.listen(GQL_PORT,'0.0.0.0').then(({ url }) => {
     console.log(`GQL server is running at : ${url} `);
 });
