@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { IoLogOut } from "react-icons/io5";
 import {
   Button,
   Center,
@@ -24,6 +25,7 @@ function LeftPane({ clients, data, pid }) {
   const inpRef = useRef();
   const castRef = useRef();
   const params = useParams();
+  const navigate = useNavigate();
 
   const handleCast = (e) => {
     e.preventDefault();
@@ -83,6 +85,11 @@ function LeftPane({ clients, data, pid }) {
           setOptions(null);
         }, 5000);
       });
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("uid");
+    navigate("/auth/login");
   };
 
   return (
@@ -179,6 +186,19 @@ function LeftPane({ clients, data, pid }) {
           </Button>
         </div>
       )}
+
+      <div style={{ margin: "180px 40px 25px" }}>
+        <Button
+          variant="filled"
+          color="red"
+          onClick={() => {
+            handleLogOut();
+          }}
+          rightIcon={<IoLogOut style={{ marginLeft: '0.5px' }} />}
+        >
+          Logout 
+        </Button>
+      </div>
     </div>
   );
 }
