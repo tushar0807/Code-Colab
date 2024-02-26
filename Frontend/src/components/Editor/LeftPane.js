@@ -98,6 +98,7 @@ function LeftPane({ clients, data, pid }) {
         margin: 0,
         position: "fixed",
         top: 0,
+        bottom:0,
       }}
     >
       <Center
@@ -187,7 +188,7 @@ function LeftPane({ clients, data, pid }) {
         </div>
       )}
 
-      <div style={{ margin: "180px 40px 25px" }}>
+      <div style={{ position: "absolute", bottom: "20px", left: "40px" }}>
         <Button
           variant="filled"
           color="red"
