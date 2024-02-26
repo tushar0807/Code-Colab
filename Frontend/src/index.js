@@ -7,7 +7,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { StoreProvider } from "./assets/StoreContext";
 
 const client = new ApolloClient({
-  uri: "https://ae4aaf2c-45d4-493c-8f7e-aebd70398acb-00-3mifriq68bop2.pike.replit.dev",
+  uri: "https://code-colab-t7eb.onrender.com",
   cache: new InMemoryCache(),
 });
 
