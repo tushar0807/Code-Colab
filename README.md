@@ -68,10 +68,18 @@ Follow these steps to run the app locally on your machine.
     ```bash
     cd ./gql_server
     npm install
+    npm run start
+    ```
+
+4. **Websocket Server Setup**
+
+    ```bash
+    cd ./gql_server
+    npm install
     npm run dev
     ```
 
-4. **Access the App**
+5. **Access the App**
 
     Once both the frontend and GraphQL server are running, you can access the app by navigating to `http://localhost:3000` in your web browser.
 
@@ -84,4 +92,4 @@ Follow these steps to run the app locally on your machine.
 * [Tushar Amritfale](https://github.com/tushar0807)
 * [Shubham Armo](https://github.com/space584)
 
-Try it Now [Code Collab](https://code-kolab.vercel.app/)
+Try it Now [Code Collab](https://code-colab.netlify.app/)
