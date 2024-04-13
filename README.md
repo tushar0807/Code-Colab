@@ -92,4 +92,4 @@ Follow these steps to run the app locally on your machine.
 * [Tushar Amritfale](https://github.com/tushar0807)
 * [Shubham Armo](https://github.com/space584)
 
-Try it Now [Code Collab](https://code-colab.netlify.app/)
+Try it Now [Code Collab](http://165.22.213.109:3000/)
